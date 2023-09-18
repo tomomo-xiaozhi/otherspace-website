@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  font-family: var(--font-inter);
+}
+
+.custom-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-image: url("/night.png");
+  width: 100%;
+  min-height: 100vh;
+}
+
+.hero {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+#about {
+  margin: 896px 2rem 0 2rem;
+}
+
+#contact {
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+@media only screen and (min-width: 768px) {
+  #contact {
+    margin-left: 10rem;
+    margin-right: 10rem;
+  }
+}
+
+#access-lg {
+  display: none;
+}
+@media only screen and (min-width: 768px) {
+  #access-lg {
+    display: block;
+  }
+}
+
+#access-sm {
+  display: none;
+}
+
+@media only screen and (max-width: 768px) {
+  #access-sm {
+    display: block;
+  }
+}
