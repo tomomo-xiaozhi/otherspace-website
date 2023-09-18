@@ -54,8 +54,8 @@ const AboutSection = () => {
             </p>
             <br /> */}
             <p>
-              "OTHER SPACE" is a next-level accommodation facility that offers a
-              unique hotel experience{" "}
+              &quot;OTHER SPACE&quot; is a next-level accommodation facility
+              that offers a unique hotel experience{" "}
               <span className="font-bold text-teal-500">
                 tailored to your individual needs
               </span>{" "}
@@ -64,7 +64,7 @@ const AboutSection = () => {
             </p>
             <br />
             <p>
-              At "OTHER SPACE" we not only offer a comfortable lodging
+              At &quot;OTHER SPACE&quot; we not only offer a comfortable lodging
               experience but also ample opportunities to engage with local
               culture and activities. You can explore the surrounding areas and
               indulge in new experiences.
