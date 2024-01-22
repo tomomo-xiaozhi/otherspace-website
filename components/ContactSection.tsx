@@ -2,30 +2,33 @@
 import React from "react";
 import { useFormik } from "formik";
 import emailjs from "emailjs-com";
+import { contactFormSchema } from "../validations/validationSchema";
 
 const ContactSection: React.FC = () => {
-  const formik = useFormik({
-    initialValues: {
-      name: "",
-      email: "",
-      message: "",
-    },
-    onSubmit: (values) => {
-      emailjs
-        .send(
-          "service_9y1b38h",
-          "template_pim6g0h",
-          values, // This should be your form data.
-          "Abpghx-upQH1Om_gT"
-        )
-        .then((response) => {
-          console.log("Email sent successfully!", response);
-        })
-        .catch((error) => {
-          console.error("Email could not be sent:", error);
-        });
-    },
-  });
+  const { handleSubmit, handleChange, handleBlur, values, touched, errors } =
+    useFormik({
+      initialValues: {
+        name: "",
+        email: "",
+        message: "",
+      },
+      onSubmit: (values) => {
+        emailjs
+          .send(
+            "service_9y1b38h",
+            "template_pim6g0h",
+            values, // This should be your form data.
+            "Abpghx-upQH1Om_gT"
+          )
+          .then((response) => {
+            console.log("Email sent successfully!", response);
+          })
+          .catch((error) => {
+            console.error("Email could not be sent:", error);
+          });
+      },
+      validationSchema: contactFormSchema,
+    });
 
   return (
     <section id="contact" className="my-12 pb-12 md:pt-16 md:pb-48">
@@ -33,7 +36,7 @@ const ContactSection: React.FC = () => {
         Contact
         <hr className="w-6 h-1 mx-auto my-4 bg-teal-500 border-0 rounded"></hr>
       </h1>
-      <form onSubmit={formik.handleSubmit} className="flex flex-col gap-y-2.5">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-y-2.5">
         <label htmlFor="name" className="text-2xl font-bold">
           Name
         </label>
@@ -41,8 +44,8 @@ const ContactSection: React.FC = () => {
           id="name"
           name="name"
           type="text"
-          onChange={formik.handleChange}
-          value={formik.values.name}
+          onChange={handleChange}
+          value={values.name}
           className="bg-white border border-gray-200 p-2 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
         />
         <label htmlFor="email" className="text-2xl font-bold">
@@ -52,18 +55,22 @@ const ContactSection: React.FC = () => {
           id="email"
           name="email"
           type="text"
-          onChange={formik.handleChange}
-          value={formik.values.email}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          value={values.email}
           className="bg-white border border-gray-200 p-2 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
-        />
+        />{" "}
+        {errors.email && touched.email ? (
+          <div className="text-red-500">{errors.email}</div>
+        ) : null}
         <label htmlFor="message" className="text-2xl font-bold">
           Message
         </label>
         <textarea
           id="message"
           name="message"
-          onChange={formik.handleChange}
-          value={formik.values.message}
+          onChange={handleChange}
+          value={values.message}
           rows={5}
           cols={33}
           className="bg-white border border-gray-200 p-2 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
